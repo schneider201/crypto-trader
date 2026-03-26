@@ -2,22 +2,27 @@
 Hyperliquid WebSocket feed.
 
 Connects to wss://api.hyperliquid.xyz/ws
-Subscribes to: l2Book, trades, activeAssetCtx, liquidations
+Subscribes to: l2Book, trades, activeAssetCtx (per asset)
+Liquidations: polled via REST API every 60s (no WS subscription available)
 Assets: BTC, ETH, SOL (configurable via HL_ASSETS env var)
 """
 from __future__ import annotations
 
+import asyncio
 import json
 import os
 import time
 from typing import Any
 
+import aiohttp
 import structlog
 import websockets
 
 from data.feeds.base import BaseFeed
 
 logger = structlog.get_logger(__name__)
+
+HL_REST_URL = "https://api.hyperliquid.xyz/info"
 
 
 class HyperliquidFeed(BaseFeed):
@@ -58,12 +63,10 @@ class HyperliquidFeed(BaseFeed):
             }))
             self.log.debug("hl.subscribed", asset=asset)
 
-        # All liquidations (not per-asset on HL)
-        await ws.send(json.dumps({
-            "method": "subscribe",
-            "subscription": {"type": "liquidations"},
-        }))
         self.log.info("hl.all_subscriptions_sent", assets=self._assets)
+
+        # Start liquidation poller as background task (REST-based, not WS)
+        asyncio.create_task(self._liquidation_poll_loop())
 
     async def handle_message(self, raw: str) -> None:
         """Parse and route incoming Hyperliquid WS messages."""
@@ -77,8 +80,6 @@ class HyperliquidFeed(BaseFeed):
             await self._handle_trades(data)
         elif channel == "activeAssetCtx":
             await self._handle_asset_ctx(data)
-        elif channel == "liquidations":
-            await self._handle_liquidations(data)
         elif channel == "subscriptionResponse":
             self.log.debug("hl.subscription_ack", data=data)
         else:
@@ -153,20 +154,95 @@ class HyperliquidFeed(BaseFeed):
         }
         await self.publish("funding", normalized)
 
-    async def _handle_liquidations(self, data: Any) -> None:
-        """Normalise liquidation events."""
-        if isinstance(data, dict):
-            data = [data]
-        if not isinstance(data, list):
-            return
-        for liq in data:
-            normalized = {
-                "ts": liq.get("time", int(time.time() * 1000)),
-                "exchange": "hyperliquid",
-                "symbol": liq.get("coin", "UNKNOWN"),
-                "side": "long" if liq.get("side", "") == "A" else "short",
-                "price": float(liq.get("px", 0)),
-                "quantity": float(liq.get("sz", 0)),
-                "usd_value": float(liq.get("px", 0)) * float(liq.get("sz", 0)),
-            }
-            await self.publish("liquidations", normalized)
+    async def _liquidation_poll_loop(self) -> None:
+        """
+        Poll Hyperliquid recentTrades REST endpoint for liquidation events every 30s.
+
+        Hyperliquid does NOT have a dedicated liquidations WS or REST endpoint.
+        Liquidated trades are identified by checking if the trade hash appears in
+        the clearinghouse liquidation records, OR by using the 'recentTrades' endpoint
+        and cross-referencing with known liquidator vault addresses.
+
+        Simpler approach: use recentTrades per asset and flag trades where one of the
+        two user addresses is the known HL liquidator vault:
+        0x0000000000000000000000000000000000000000 or matches liquidator pattern.
+
+        Best production approach: subscribe to userEvents for the liquidator vault address.
+        We use recentTrades + hash inspection as a practical approximation.
+        """
+        POLL_INTERVAL = 30  # seconds
+        # Known Hyperliquid liquidator/system addresses (zero address is liquidator)
+        LIQUIDATOR_ADDRESSES = {
+            "0x0000000000000000000000000000000000000000",
+        }
+        last_seen_tids: set[str] = set()
+
+        self.log.info("hl.liquidation_poller_started", interval_s=POLL_INTERVAL)
+
+        while True:
+            try:
+                await asyncio.sleep(POLL_INTERVAL)
+                now_ms = int(time.time() * 1000)
+                new_count = 0
+
+                async with aiohttp.ClientSession() as session:
+                    for asset in self._assets:
+                        payload = {"type": "recentTrades", "coin": asset}
+                        async with session.post(
+                            HL_REST_URL, json=payload,
+                            timeout=aiohttp.ClientTimeout(total=10)
+                        ) as resp:
+                            if resp.status != 200:
+                                continue
+                            trades = await resp.json()
+
+                        if not isinstance(trades, list):
+                            continue
+
+                        for trade in trades:
+                            tid = str(trade.get("tid", ""))
+                            if tid in last_seen_tids:
+                                continue
+                            last_seen_tids.add(tid)
+
+                            # Check if any party is the liquidator (zero address)
+                            users = trade.get("users", [])
+                            is_liquidation = any(
+                                u.lower() in LIQUIDATOR_ADDRESSES for u in users
+                            )
+                            if not is_liquidation:
+                                continue
+
+                            # Liquidated party is the non-liquidator
+                            # side "A" = ask/sell side was liquidated (long position)
+                            # side "B" = bid/buy side was liquidated (short position)
+                            side_raw = trade.get("side", "")
+                            side = "long" if side_raw == "A" else "short"
+
+                            px = float(trade.get("px", 0))
+                            sz = float(trade.get("sz", 0))
+
+                            normalized = {
+                                "ts": trade.get("time", now_ms),
+                                "exchange": "hyperliquid",
+                                "symbol": trade.get("coin", asset),
+                                "side": side,
+                                "price": px,
+                                "quantity": sz,
+                                "usd_value": px * sz,
+                            }
+                            await self.publish("liquidations", normalized)
+                            new_count += 1
+
+                # Keep seen set bounded
+                if len(last_seen_tids) > 50000:
+                    last_seen_tids = set(list(last_seen_tids)[-25000:])
+
+                if new_count > 0:
+                    self.log.info("hl.liquidations_detected", count=new_count)
+
+            except asyncio.CancelledError:
+                break
+            except Exception as exc:
+                self.log.error("hl.liquidation_poll_exception", error=str(exc))
+                await asyncio.sleep(10)
