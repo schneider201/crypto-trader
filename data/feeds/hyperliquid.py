@@ -185,7 +185,8 @@ class HyperliquidFeed(BaseFeed):
                 now_ms = int(time.time() * 1000)
                 new_count = 0
 
-                async with aiohttp.ClientSession() as session:
+                headers = {"User-Agent": "crypto-trader-research/1.0"}
+                async with aiohttp.ClientSession(headers=headers) as session:
                     for asset in self._assets:
                         payload = {"type": "recentTrades", "coin": asset}
                         async with session.post(
