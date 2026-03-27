@@ -1,0 +1,184 @@
+{
+  "BTC": {
+    "best_params": {
+      "zscore_threshold": 2.0,
+      "abs_funding_pct": 95,
+      "trend_filter": 0.05,
+      "max_hold_hours": 24
+    },
+    "abs_funding_threshold": 3.530173e-05,
+    "metrics": {
+      "period_start": "2025-11-28",
+      "period_end": "2026-04-02",
+      "total_trades": 1,
+      "win_rate_pct": 100.0,
+      "total_return_pct": 1.18,
+      "ann_return_pct": 3.72,
+      "sharpe_ratio": 1.759,
+      "sortino_ratio": 0,
+      "max_drawdown_pct": 0.0,
+      "calmar_ratio": 0,
+      "avg_win_usd": 118.31,
+      "avg_loss_usd": 0,
+      "win_loss_ratio": 0,
+      "profit_factor": Infinity,
+      "avg_hold_hours": 19.0,
+      "best_month_pct": 1.18,
+      "worst_month_pct": 1.18,
+      "funding_collected_usd": 0.8,
+      "monthly_returns": {
+        "2026-01": 1.18
+      },
+      "exit_reasons": {
+        "STOP": 1
+      },
+      "final_equity": 10118.31
+    },
+    "monte_carlo": {
+      "mc_simulations": 500,
+      "mc_p5_max_drawdown": 0.0,
+      "mc_p50_total_return": 1.18,
+      "mc_p95_total_return": 1.18,
+      "mc_p5_total_return": 1.18
+    }
+  },
+  "ETH": {
+    "best_params": {
+      "zscore_threshold": 2.5,
+      "abs_funding_pct": 90,
+      "trend_filter": 0.12,
+      "max_hold_hours": 48
+    },
+    "abs_funding_threshold": 2.083991e-05,
+    "metrics": {
+      "period_start": "2025-12-10",
+      "period_end": "2026-04-14",
+      "total_trades": 4,
+      "win_rate_pct": 50.0,
+      "total_return_pct": 1.4,
+      "ann_return_pct": 4.94,
+      "sharpe_ratio": 1.258,
+      "sortino_ratio": 0.607,
+      "max_drawdown_pct": -0.8,
+      "calmar_ratio": 6.198,
+      "avg_win_usd": 121.3,
+      "avg_loss_usd": 51.09,
+      "win_loss_ratio": 2.374,
+      "profit_factor": 2.374,
+      "avg_hold_hours": 20.5,
+      "best_month_pct": 1.61,
+      "worst_month_pct": -0.82,
+      "funding_collected_usd": 0.86,
+      "monthly_returns": {
+        "2025-12": 1.61,
+        "2026-01": 0.61,
+        "2026-02": -0.82
+      },
+      "exit_reasons": {
+        "TP_FULL": 1,
+        "TIMEOUT": 1,
+        "TP_ZSCORE": 1,
+        "STOP": 1
+      },
+      "final_equity": 10140.42
+    },
+    "monte_carlo": {
+      "mc_simulations": 500,
+      "mc_p5_max_drawdown": -1.02,
+      "mc_p50_total_return": 1.4,
+      "mc_p95_total_return": 1.4,
+      "mc_p5_total_return": 1.4
+    }
+  },
+  "SOL": {
+    "best_params": {
+      "zscore_threshold": 2.5,
+      "abs_funding_pct": 90,
+      "trend_filter": 0.05,
+      "max_hold_hours": 24
+    },
+    "abs_funding_threshold": 2.827724e-05,
+    "metrics": {
+      "period_start": "2025-11-28",
+      "period_end": "2026-04-02",
+      "total_trades": 9,
+      "win_rate_pct": 44.44,
+      "total_return_pct": -2.21,
+      "ann_return_pct": -6.7,
+      "sharpe_ratio": -2.168,
+      "sortino_ratio": -1.934,
+      "max_drawdown_pct": -2.54,
+      "calmar_ratio": -2.639,
+      "avg_win_usd": 33.41,
+      "avg_loss_usd": 70.86,
+      "win_loss_ratio": 0.472,
+      "profit_factor": 0.377,
+      "avg_hold_hours": 13.33,
+      "best_month_pct": -0.47,
+      "worst_month_pct": -0.87,
+      "funding_collected_usd": 1.48,
+      "monthly_returns": {
+        "2026-01": -0.87,
+        "2026-02": -0.86,
+        "2026-03": -0.47
+      },
+      "exit_reasons": {
+        "STOP": 4,
+        "TIMEOUT": 3,
+        "TP_ZSCORE": 2
+      },
+      "final_equity": 9779.35
+    },
+    "monte_carlo": {
+      "mc_simulations": 500,
+      "mc_p5_max_drawdown": -3.41,
+      "mc_p50_total_return": -2.21,
+      "mc_p95_total_return": -2.21,
+      "mc_p5_total_return": -2.21
+    }
+  },
+  "COMBINED": {
+    "best_params": "see individual assets",
+    "abs_funding_threshold": null,
+    "metrics": {
+      "period_start": "2025-12-12",
+      "period_end": "2026-03-22",
+      "total_trades": 14,
+      "win_rate_pct": 50.0,
+      "total_return_pct": 0.38,
+      "ann_return_pct": 1.39,
+      "sharpe_ratio": -1.137,
+      "sortino_ratio": -1.086,
+      "max_drawdown_pct": -2.67,
+      "calmar_ratio": 0.522,
+      "avg_win_usd": 70.65,
+      "avg_loss_usd": 65.21,
+      "win_loss_ratio": 1.083,
+      "profit_factor": 1.083,
+      "avg_hold_hours": 15.79,
+      "best_month_pct": 1.61,
+      "worst_month_pct": -1.68,
+      "funding_collected_usd": 3.15,
+      "monthly_returns": {
+        "2025-12": 1.61,
+        "2026-01": 0.92,
+        "2026-02": -1.68,
+        "2026-03": -0.47
+      },
+      "exit_reasons": {
+        "STOP": 6,
+        "TIMEOUT": 4,
+        "TP_ZSCORE": 3,
+        "TP_FULL": 1
+      },
+      "final_equity": 10038.08
+    },
+    "monte_carlo": {
+      "mc_simulations": 500,
+      "mc_p5_max_drawdown": -3.58,
+      "mc_p50_total_return": 0.38,
+      "mc_p95_total_return": 0.38,
+      "mc_p5_total_return": 0.38
+    }
+  }
+}

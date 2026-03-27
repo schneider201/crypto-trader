@@ -1,0 +1,164 @@
+{
+  "BTC": {
+    "metrics": {
+      "period_start": "2025-11-28",
+      "period_end": "2026-04-02",
+      "total_trades": 40,
+      "win_rate_pct": 40.0,
+      "total_return_pct": -5.67,
+      "ann_return_pct": -16.58,
+      "sharpe_ratio": -2.013,
+      "sortino_ratio": -1.346,
+      "max_drawdown_pct": -7.17,
+      "calmar_ratio": -2.312,
+      "avg_win_usd": 54.18,
+      "avg_loss_usd": 59.73,
+      "win_loss_ratio": 0.907,
+      "profit_factor": 0.605,
+      "avg_hold_hours": 8.1,
+      "best_month_pct": -0.17,
+      "worst_month_pct": -2.32,
+      "monthly_returns": {
+        "2025-11": -0.17,
+        "2025-12": -1.01,
+        "2026-01": -2.32,
+        "2026-02": -0.9,
+        "2026-03": -1.26
+      },
+      "exit_reasons": {
+        "TP_ZSCORE": 22,
+        "STOP": 16,
+        "TIMEOUT": 2
+      },
+      "final_equity": 9433.24
+    },
+    "monte_carlo": {
+      "mc_simulations": 500,
+      "mc_p5_max_drawdown": -9.36,
+      "mc_p50_total_return": -5.67,
+      "mc_p95_total_return": -5.67,
+      "mc_p5_total_return": -5.67
+    }
+  },
+  "ETH": {
+    "metrics": {
+      "period_start": "2025-12-10",
+      "period_end": "2026-04-14",
+      "total_trades": 22,
+      "win_rate_pct": 31.82,
+      "total_return_pct": -5.68,
+      "ann_return_pct": -18.31,
+      "sharpe_ratio": -2.894,
+      "sortino_ratio": -1.141,
+      "max_drawdown_pct": -6.6,
+      "calmar_ratio": -2.775,
+      "avg_win_usd": 45.81,
+      "avg_loss_usd": 59.23,
+      "win_loss_ratio": 0.773,
+      "profit_factor": 0.361,
+      "avg_hold_hours": 7.45,
+      "best_month_pct": 0.11,
+      "worst_month_pct": -4.05,
+      "monthly_returns": {
+        "2025-12": 0.11,
+        "2026-01": -4.05,
+        "2026-02": -1.73
+      },
+      "exit_reasons": {
+        "STOP": 14,
+        "TP_ZSCORE": 5,
+        "TIMEOUT": 2,
+        "TP_FULL": 1
+      },
+      "final_equity": 9432.16
+    },
+    "monte_carlo": {
+      "mc_simulations": 500,
+      "mc_p5_max_drawdown": -7.31,
+      "mc_p50_total_return": -5.68,
+      "mc_p95_total_return": -5.68,
+      "mc_p5_total_return": -5.68
+    }
+  },
+  "SOL": {
+    "metrics": {
+      "period_start": "2025-11-28",
+      "period_end": "2026-04-02",
+      "total_trades": 34,
+      "win_rate_pct": 35.29,
+      "total_return_pct": -8.02,
+      "ann_return_pct": -22.86,
+      "sharpe_ratio": -3.74,
+      "sortino_ratio": -2.283,
+      "max_drawdown_pct": -9.06,
+      "calmar_ratio": -2.524,
+      "avg_win_usd": 36.76,
+      "avg_loss_usd": 56.49,
+      "win_loss_ratio": 0.651,
+      "profit_factor": 0.355,
+      "avg_hold_hours": 6.76,
+      "best_month_pct": -1.6,
+      "worst_month_pct": -3.43,
+      "monthly_returns": {
+        "2026-01": -2.99,
+        "2026-02": -3.43,
+        "2026-03": -1.6
+      },
+      "exit_reasons": {
+        "TP_ZSCORE": 18,
+        "STOP": 13,
+        "TIMEOUT": 3
+      },
+      "final_equity": 9198.38
+    },
+    "monte_carlo": {
+      "mc_simulations": 500,
+      "mc_p5_max_drawdown": -9.68,
+      "mc_p50_total_return": -8.02,
+      "mc_p95_total_return": -8.02,
+      "mc_p5_total_return": -8.02
+    }
+  },
+  "COMBINED": {
+    "metrics": {
+      "period_start": "2025-11-29",
+      "period_end": "2026-03-22",
+      "total_trades": 96,
+      "win_rate_pct": 36.46,
+      "total_return_pct": -19.36,
+      "ann_return_pct": -50.0,
+      "sharpe_ratio": -4.008,
+      "sortino_ratio": -2.781,
+      "max_drawdown_pct": -20.54,
+      "calmar_ratio": -2.434,
+      "avg_win_usd": 46.53,
+      "avg_loss_usd": 58.44,
+      "win_loss_ratio": 0.796,
+      "profit_factor": 0.457,
+      "avg_hold_hours": 7.48,
+      "best_month_pct": -0.17,
+      "worst_month_pct": -9.36,
+      "monthly_returns": {
+        "2025-11": -0.17,
+        "2025-12": -0.9,
+        "2026-01": -9.36,
+        "2026-02": -6.07,
+        "2026-03": -2.87
+      },
+      "exit_reasons": {
+        "TP_ZSCORE": 45,
+        "STOP": 43,
+        "TIMEOUT": 7,
+        "TP_FULL": 1
+      },
+      "final_equity": 8063.78
+    },
+    "monte_carlo": {
+      "mc_simulations": 500,
+      "mc_p5_max_drawdown": -22.44,
+      "mc_p50_total_return": -19.36,
+      "mc_p95_total_return": -19.36,
+      "mc_p5_total_return": -19.36
+    }
+  }
+}

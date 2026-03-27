@@ -1,0 +1,164 @@
+{
+  "BTC": {
+    "best_params": {
+      "zscore_threshold": 1.5,
+      "trend_filter_pct": 0.02,
+      "max_hold_hours": 48,
+      "atr_multiplier": 1.5,
+      "tp_r_multiple": 2.5
+    },
+    "metrics": {
+      "total_trades": 16,
+      "win_rate_pct": 43.75,
+      "total_return_pct": -2.07,
+      "ann_return_pct": -6.26,
+      "final_equity": 9793.27,
+      "sharpe": -1.622,
+      "sortino": -0.184,
+      "max_drawdown_pct": -3.93,
+      "calmar": -1.593,
+      "avg_win_usd": 32.14,
+      "avg_loss_usd": 47.98,
+      "win_loss_ratio": 0.67,
+      "profit_factor": 0.521,
+      "avg_hold_hours": 39.94,
+      "exit_reasons": {
+        "TIMEOUT": 12,
+        "STOP": 4
+      },
+      "monthly_returns": {
+        "2025-11": 0.0,
+        "2025-12": 0.0,
+        "2026-01": -1.49,
+        "2026-02": -0.64,
+        "2026-03": 0.05
+      }
+    },
+    "monte_carlo": {
+      "p5_max_drawdown": -3.91,
+      "p50_max_drawdown": -2.92,
+      "p50_total_return": -2.07,
+      "p95_total_return": -2.07
+    },
+    "verdict": "FAIL"
+  },
+  "ETH": {
+    "best_params": {
+      "zscore_threshold": 1.5,
+      "trend_filter_pct": 0.02,
+      "max_hold_hours": 48,
+      "atr_multiplier": 1.5,
+      "tp_r_multiple": 2.5
+    },
+    "metrics": {
+      "total_trades": 6,
+      "win_rate_pct": 33.33,
+      "total_return_pct": -3.03,
+      "ann_return_pct": -10.04,
+      "final_equity": 9697.28,
+      "sharpe": -3.199,
+      "sortino": -3.356,
+      "max_drawdown_pct": -3.44,
+      "calmar": -2.922,
+      "avg_win_usd": 20.49,
+      "avg_loss_usd": 85.94,
+      "win_loss_ratio": 0.238,
+      "profit_factor": 0.119,
+      "avg_hold_hours": 36.5,
+      "exit_reasons": {
+        "STOP": 3,
+        "TIMEOUT": 3
+      },
+      "monthly_returns": {
+        "2025-12": 0.0,
+        "2026-01": -1.77,
+        "2026-02": -1.59,
+        "2026-03": 0.32
+      }
+    },
+    "monte_carlo": {
+      "p5_max_drawdown": -3.44,
+      "p50_max_drawdown": -3.13,
+      "p50_total_return": -3.03,
+      "p95_total_return": -3.03
+    },
+    "verdict": "INSUFFICIENT DATA"
+  },
+  "SOL": {
+    "best_params": {
+      "zscore_threshold": 1.5,
+      "trend_filter_pct": 0.06,
+      "max_hold_hours": 48,
+      "atr_multiplier": 1.5,
+      "tp_r_multiple": 2.5
+    },
+    "metrics": {
+      "total_trades": 19,
+      "win_rate_pct": 31.58,
+      "total_return_pct": -3.75,
+      "ann_return_pct": -11.16,
+      "final_equity": 9624.51,
+      "sharpe": -2.606,
+      "sortino": -0.419,
+      "max_drawdown_pct": -5.55,
+      "calmar": -2.012,
+      "avg_win_usd": 45.22,
+      "avg_loss_usd": 49.77,
+      "win_loss_ratio": 0.909,
+      "profit_factor": 0.419,
+      "avg_hold_hours": 44.21,
+      "exit_reasons": {
+        "TIMEOUT": 15,
+        "STOP": 4
+      },
+      "monthly_returns": {
+        "2025-11": 0.0,
+        "2025-12": 0.0,
+        "2026-01": -2.12,
+        "2026-02": -1.85,
+        "2026-03": 0.19
+      }
+    },
+    "monte_carlo": {
+      "p5_max_drawdown": -5.62,
+      "p50_max_drawdown": -4.4,
+      "p50_total_return": -3.76,
+      "p95_total_return": -3.76
+    },
+    "verdict": "FAIL"
+  },
+  "COMBINED": {
+    "metrics": {
+      "total_trades": 41,
+      "win_rate_pct": 36.59,
+      "total_return_pct": -8.85,
+      "ann_return_pct": -34.49,
+      "final_equity": 9114.66,
+      "sharpe": -36.526,
+      "sortino": -61.392,
+      "max_drawdown_pct": -12.14,
+      "calmar": -2.84,
+      "avg_win_usd": 35.82,
+      "avg_loss_usd": 54.72,
+      "win_loss_ratio": 0.655,
+      "profit_factor": 0.378,
+      "avg_hold_hours": 41.41,
+      "exit_reasons": {
+        "TIMEOUT": 30,
+        "STOP": 11
+      },
+      "monthly_returns": {
+        "2026-01": -5.38,
+        "2026-02": -3.92,
+        "2026-03": 0.67
+      }
+    },
+    "monte_carlo": {
+      "p5_max_drawdown": -10.87,
+      "p50_max_drawdown": -9.39,
+      "p50_total_return": -8.85,
+      "p95_total_return": -8.85
+    },
+    "verdict": "FAIL"
+  }
+}
